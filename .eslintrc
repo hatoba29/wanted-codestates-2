@@ -8,6 +8,19 @@
   ],
   "rules": {
     "import/no-extraneous-dependencies": 0,
+    "import/extensions": [
+      2,
+      {
+        "tsx": "never"
+      }
+    ],
     "no-use-before-define": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.dev.ts"
+      }
+    }
   }
 }

@@ -19,6 +19,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: [".tsx", ".js"],
+    alias: {
+      "~": resolve(__dirname),
+    },
   },
   module: {
     rules: [
