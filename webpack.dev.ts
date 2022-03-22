@@ -13,6 +13,13 @@ const config: Configuration = {
     port: 3000,
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      "/api": {
+        target: "https://api.nexon.co.kr/kart/v1.0",
+        changeOrigin: true,
+        pathRewrite: { "^/api": "" },
+      },
+    },
   },
   resolve: {
     extensions: [".tsx", ".js"],
