@@ -7,10 +7,11 @@ import {
   Routes,
   Route,
   Navigate,
-  useParams,
+  useSearchParams,
 } from "react-router-dom"
 
 import NavBar from "~/components/NavBar"
+import Home from "./Home"
 
 const globalStyle = css`
   ${normalize}
@@ -34,8 +35,13 @@ const globalStyle = css`
 `
 
 const User = () => {
-  const p = useParams()
-  return <h1>user {p.id}</h1>
+  const [params, setParams] = useSearchParams()
+  return <h1>User {params.get("nick")}</h1>
+}
+
+const Track = () => {
+  const [params, setParams] = useSearchParams()
+  return <h1>Track {params.get("trackName")}</h1>
 }
 
 const App = () => (
@@ -44,12 +50,10 @@ const App = () => (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="user">
-          <Route path=":id" element={<User />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="user" element={<User />} />
         <Route path="rank" element={<h1>Ranking</h1>} />
-        <Route path="track" element={<h1>Track</h1>} />
+        <Route path="track" element={<Track />} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </BrowserRouter>

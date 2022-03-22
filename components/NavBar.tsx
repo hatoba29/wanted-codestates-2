@@ -23,7 +23,7 @@ const NavBar = () => {
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      navigate(`user/${query}`)
+      navigate(`user?nick=${query}`)
       setQuery("")
       e.currentTarget.blur()
     }
@@ -56,7 +56,7 @@ const NavBar = () => {
             onChange={handleSearch}
             onKeyDown={handleEnter}
           />
-          <NavLink to={`user/${query}`}>
+          <NavLink to={`user?nick=${query}`}>
             <FaSearch className="fa-search" size={14} color="white" />
           </NavLink>
         </Search>
