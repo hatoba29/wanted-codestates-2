@@ -10,6 +10,7 @@ const config: Configuration = {
     app: resolve(__dirname, "pages", "index.tsx"),
   },
   output: {
+    publicPath: "/",
     clean: true,
   },
   devServer: {
@@ -19,6 +20,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: [".tsx", ".js"],
+    alias: {
+      "~": resolve(__dirname),
+    },
   },
   module: {
     rules: [

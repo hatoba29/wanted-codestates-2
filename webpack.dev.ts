@@ -9,6 +9,9 @@ const config: Configuration = {
   entry: {
     app: resolve(__dirname, "pages", "index.tsx"),
   },
+  output: {
+    publicPath: "/",
+  },
   devServer: {
     port: 3000,
     historyApiFallback: true,
@@ -16,6 +19,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: [".tsx", ".js"],
+    alias: {
+      "~": resolve(__dirname),
+    },
   },
   module: {
     rules: [
@@ -23,6 +29,10 @@ const config: Configuration = {
         test: /\.tsx$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
+      },
+      {
+        test: /\.svg$/,
+        type: "asset/resource",
       },
       {
         test: /\.html$/,

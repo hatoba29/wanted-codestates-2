@@ -7,7 +7,10 @@
     "removeComments": true,
     "strict": true,
     "esModuleInterop": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
