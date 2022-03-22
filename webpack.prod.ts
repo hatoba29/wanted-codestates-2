@@ -10,7 +10,6 @@ const config: Configuration = {
     app: resolve(__dirname, "pages", "index.tsx"),
   },
   output: {
-    publicPath: "/",
     clean: true,
   },
   devServer: {

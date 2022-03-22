@@ -9,9 +9,6 @@ const config: Configuration = {
   entry: {
     app: resolve(__dirname, "pages", "index.tsx"),
   },
-  output: {
-    publicPath: "/",
-  },
   devServer: {
     port: 3000,
     historyApiFallback: true,
@@ -31,7 +28,7 @@ const config: Configuration = {
         use: ["ts-loader"],
       },
       {
-        test: /\.svg$/,
+        test: /\.(svg|png)$/,
         type: "asset/resource",
       },
       {
