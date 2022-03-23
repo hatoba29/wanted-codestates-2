@@ -117,13 +117,17 @@ const Title = styled.header`
 const Graphs = styled.div`
   width: 100%;
   padding: 8px 0;
-  border-top: 1px solid #f2f2f2;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #f2f2f2;
   flex-grow: 1;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* justify-items: center; */
+
+  & > div:nth-child(2) {
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+  }
 `
 
 const Footer = styled.header`

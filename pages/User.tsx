@@ -3,11 +3,14 @@ import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
 import { useQuery } from "react-query"
 import { FaInfoCircle } from "react-icons/fa"
+
 import { getUserProfile } from "~/api/fetcher"
 import UserComp from "~/components/User"
 import calcRecords from "~/utils/calcRecords"
+import calcRank from "~/utils/calcRank"
 
 import type { IRecords } from "~/components/User/Records"
+import type { IRank } from "~/components/User/Rank"
 import type { Result, Player, IQueryKey } from "~/types/getUserProfile"
 
 type TMatchType = "indi" | "team"
@@ -24,6 +27,7 @@ const User = () => {
   const [character, setCharacter] = useState("")
   const [license, setLicense] = useState<Player["rankinggrade2"]>("0")
   const [recordsData, setRecordsData] = useState<IRecords["data"] | null>(null)
+  const [rankData, setRankData] = useState<IRank["data"] | null>(null)
 
   // initialize data after fetching
   useEffect(() => {
@@ -32,6 +36,7 @@ const User = () => {
     setCharacter(info.character)
     setLicense(info.player.rankinggrade2)
     setRecordsData(calcRecords(data.matchInfo))
+    setRankData(calcRank(data.matchInfo))
   }, [data])
 
   if (data?.notFound) return <UserComp.NotFound />
@@ -48,6 +53,7 @@ const User = () => {
       />
       <Stat>
         <UserComp.Records data={recordsData} />
+        <UserComp.Rank data={rankData} />
       </Stat>
       <UserComp.Spinner show={isLoading} />
     </Wrapper>
