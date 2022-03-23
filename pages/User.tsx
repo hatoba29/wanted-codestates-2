@@ -5,8 +5,9 @@ import { useQuery } from "react-query"
 import { FaInfoCircle } from "react-icons/fa"
 import { getUserProfile } from "~/api/fetcher"
 import UserComp from "~/components/User"
+import calcRecords from "~/utils/calcRecords"
 
-import Spinner from "~/components/User/Spinner"
+import type { IRecords } from "~/components/User/Records"
 import type { Result, Player, IQueryKey } from "~/types/getUserProfile"
 
 type TMatchType = "indi" | "team"
@@ -22,6 +23,7 @@ const User = () => {
 
   const [character, setCharacter] = useState("")
   const [license, setLicense] = useState<Player["rankinggrade2"]>("0")
+  const [recordsData, setRecordsData] = useState<IRecords["data"] | null>(null)
 
   // initialize data after fetching
   useEffect(() => {
@@ -29,6 +31,7 @@ const User = () => {
     const info = data.matchInfo[0]
     setCharacter(info.character)
     setLicense(info.player.rankinggrade2)
+    setRecordsData(calcRecords(data.matchInfo))
   }, [data])
 
   if (data?.notFound) return <UserComp.NotFound />
@@ -43,8 +46,10 @@ const User = () => {
         license={license}
         matchType={matchType}
       />
-      <Stat></Stat>
-      <Spinner show={isLoading} />
+      <Stat>
+        <UserComp.Records data={recordsData} />
+      </Stat>
+      <UserComp.Spinner show={isLoading} />
     </Wrapper>
   )
 }
@@ -67,7 +72,9 @@ const Info = styled.section`
 `
 
 const Stat = styled.section`
+  width: 100%;
   height: 266px;
+  margin-top: 20px;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

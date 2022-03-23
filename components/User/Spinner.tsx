@@ -31,7 +31,7 @@ const BackDrop = styled.div`
   height: 100%;
   background-color: white;
 
-  animation: fade-in 0.3s ease-out;
+  /* animation: fade-in 0.3s ease-out; */
   transition: opacity 0.3s ease-out;
 
   display: flex;
