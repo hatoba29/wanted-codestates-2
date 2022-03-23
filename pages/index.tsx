@@ -13,6 +13,7 @@ import { QueryClientProvider, QueryClient } from "react-query"
 
 import NavBar from "~/components/NavBar"
 import Home from "./Home"
+import User from "./User"
 
 const globalStyle = css`
   ${normalize}
@@ -34,11 +35,6 @@ const globalStyle = css`
     color: inherit;
   }
 `
-
-const User = () => {
-  const [params, setParams] = useSearchParams()
-  return <h1>User {params.get("nick")}</h1>
-}
 
 const Track = () => {
   const [params, setParams] = useSearchParams()

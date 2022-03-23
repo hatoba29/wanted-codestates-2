@@ -22,7 +22,7 @@ const config: Configuration = {
     },
   },
   resolve: {
-    extensions: [".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
     alias: {
       "~": resolve(__dirname),
     },
@@ -30,7 +30,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
       },
