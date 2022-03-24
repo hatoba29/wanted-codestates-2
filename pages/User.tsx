@@ -55,6 +55,7 @@ const User = () => {
         <UserComp.Rank data={rankData} />
         <UserComp.Comment />
       </Stat>
+      <UserComp.ModeTab />
       <UserComp.Spinner show={isLoading} />
     </Wrapper>
   )
@@ -83,7 +84,7 @@ const Stat = styled.section`
   margin-top: 20px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 `
 
