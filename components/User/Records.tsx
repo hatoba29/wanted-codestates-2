@@ -124,13 +124,13 @@ const Graphs = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     border-left: 1px solid #f2f2f2;
     border-right: 1px solid #f2f2f2;
   }
 `
 
-const Footer = styled.header`
+const Footer = styled.footer`
   height: 48px;
   font-size: 14px;
   line-height: 48px;

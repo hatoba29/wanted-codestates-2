@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
-import { useQuery } from "react-query"
 import { FaInfoCircle } from "react-icons/fa"
 
-import { getUserProfile } from "~/api/fetcher"
+import { getUserProfile, useNexonQuery } from "~/api/fetcher"
 import UserComp from "~/components/User"
 import calcRecords from "~/utils/calcRecords"
 import calcRank from "~/utils/calcRank"
 
 import type { IRecords } from "~/components/User/Records"
 import type { IRank } from "~/components/User/Rank"
-import type { Result, Player, IQueryKey } from "~/types/getUserProfile"
+import type { Player } from "~/types/getUserProfile"
 
 type TMatchType = "indi" | "team"
 
@@ -19,7 +18,7 @@ const User = () => {
   const params = useSearchParams()[0]
   const nick = params.get("nick") || ""
   const matchType = (params.get("matchType") as TMatchType) || "indi"
-  const { data, isLoading } = useQuery<Result, unknown, Result, IQueryKey[]>(
+  const { data, isLoading } = useNexonQuery(
     [{ nick, matchType }],
     getUserProfile
   )
@@ -54,6 +53,7 @@ const User = () => {
       <Stat>
         <UserComp.Records data={recordsData} />
         <UserComp.Rank data={rankData} />
+        <UserComp.Comment />
       </Stat>
       <UserComp.Spinner show={isLoading} />
     </Wrapper>

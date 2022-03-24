@@ -38,6 +38,7 @@ const Profile = ({ character, license, matchType }: IProfile) => {
     setParams(params)
   }
 
+  if (character === "") return <></>
   return (
     <Wrapper>
       <Pic src={`${CHAR_BASE}/${character}.png`} alt="profile pic" />
@@ -92,7 +93,7 @@ const Nick = styled.h1`
   font-size: 46px;
 
   grid-area: nm;
-  align-self: flex-end;
+  align-self: center;
 `
 
 const Tab = styled.div`
@@ -102,7 +103,7 @@ const Tab = styled.div`
 
   display: flex;
   align-items: center;
-  align-self: center;
+  align-self: flex-start;
 `
 
 const TabItem = styled.button`

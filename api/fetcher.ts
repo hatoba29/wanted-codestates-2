@@ -1,7 +1,7 @@
 import axios from "axios"
-import { QueryFunctionContext } from "react-query"
+import { QueryFunction, QueryFunctionContext, useQuery } from "react-query"
 import dayjs from "dayjs"
-import type { UserProfile, IQueryKey } from "~/types/getUserProfile"
+import type { UserProfile, IQueryKey, Result } from "~/types/getUserProfile"
 
 const matchTypeHash = {
   indi: "7b9f0fd5377c38514dbb78ebe63ac6c3b81009d5a31dd569d1cff8f005aa881a",
@@ -52,4 +52,7 @@ export const getUserProfile = async (
   }
 }
 
-export const dummy = 1
+export const useNexonQuery = (
+  key: IQueryKey[],
+  fetcher: QueryFunction<Result, IQueryKey[]>
+) => useQuery<Result, unknown, Result, IQueryKey[]>(key, fetcher)
