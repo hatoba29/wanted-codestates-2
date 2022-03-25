@@ -60,7 +60,7 @@ export const getUserProfile = async (
 export const useUPQuery = (
   key: IQueryKey[],
   fetcher: QueryFunction<Result, IQueryKey[]>,
-  opt: Omit<
+  opt?: Omit<
     UseQueryOptions<Result, unknown, Result, IQueryKey[]>,
     "queryKey" | "queryFn"
   >

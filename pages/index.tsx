@@ -14,6 +14,7 @@ import { QueryClientProvider, QueryClient } from "react-query"
 import NavBar from "~/components/NavBar"
 import Home from "./Home"
 import User from "./User"
+import Ranking from "./Ranking"
 
 const globalStyle = css`
   ${normalize}
@@ -60,7 +61,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="user" element={<User />} />
-          <Route path="rank" element={<h1>Ranking</h1>} />
+          <Route path="rank" element={<Ranking />} />
           <Route path="track" element={<Track />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
