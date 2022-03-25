@@ -37,11 +37,6 @@ const globalStyle = css`
   }
 `
 
-const Track = () => {
-  const [params, setParams] = useSearchParams()
-  return <h1>Track {params.get("trackName")}</h1>
-}
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -62,7 +57,6 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="user" element={<User />} />
           <Route path="rank" element={<Ranking />} />
-          <Route path="track" element={<Track />} />
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </QueryClientProvider>

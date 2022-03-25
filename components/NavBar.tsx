@@ -41,11 +41,6 @@ const NavBar = () => {
             랭킹
           </NavLink>
         </MenuItem>
-        <MenuItem>
-          <NavLink to="track" className={handleClass}>
-            트랙
-          </NavLink>
-        </MenuItem>
       </MenuItems>
 
       {location.pathname !== "/" && (
