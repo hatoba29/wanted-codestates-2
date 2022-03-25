@@ -5,8 +5,8 @@ import { FaUser, FaUsers } from "react-icons/fa"
 
 const Tabs = () => {
   const [params, setParams] = useSearchParams()
-  const matchType = params.get("matchType") || ""
-  const mode = params.get("mode") || ""
+  const matchType = params.get("matchType") || "indi"
+  const mode = params.get("mode") || "combine"
 
   const matchTypeClasses = {
     indi: matchType === "indi" ? "active" : "",
