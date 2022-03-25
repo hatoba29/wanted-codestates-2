@@ -13,9 +13,16 @@ const config: Configuration = {
     port: 3000,
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      "/api": {
+        target: "https://api.nexon.co.kr/kart/v1.0",
+        changeOrigin: true,
+        pathRewrite: { "^/api": "" },
+      },
+    },
   },
   resolve: {
-    extensions: [".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
     alias: {
       "~": resolve(__dirname),
     },
@@ -23,7 +30,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
       },

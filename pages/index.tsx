@@ -9,9 +9,11 @@ import {
   Navigate,
   useSearchParams,
 } from "react-router-dom"
+import { QueryClientProvider, QueryClient } from "react-query"
 
 import NavBar from "~/components/NavBar"
 import Home from "./Home"
+import User from "./User"
 
 const globalStyle = css`
   ${normalize}
@@ -34,28 +36,35 @@ const globalStyle = css`
   }
 `
 
-const User = () => {
-  const [params, setParams] = useSearchParams()
-  return <h1>User {params.get("nick")}</h1>
-}
-
 const Track = () => {
   const [params, setParams] = useSearchParams()
   return <h1>Track {params.get("trackName")}</h1>
 }
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+})
 
 const App = () => (
   <>
     <Global styles={globalStyle} />
     <BrowserRouter>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="user" element={<User />} />
-        <Route path="rank" element={<h1>Ranking</h1>} />
-        <Route path="track" element={<Track />} />
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="user" element={<User />} />
+          <Route path="rank" element={<h1>Ranking</h1>} />
+          <Route path="track" element={<Track />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
+        </Routes>
+      </QueryClientProvider>
     </BrowserRouter>
   </>
 )
