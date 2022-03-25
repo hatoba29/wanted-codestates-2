@@ -2,6 +2,13 @@ import React, { MouseEvent, SyntheticEvent } from "react"
 import styled from "@emotion/styled"
 import { FaUser, FaUsers } from "react-icons/fa"
 import { useSearchParams } from "react-router-dom"
+
+import L1 from "~/public/assets/icon_l1.png"
+import L2 from "~/public/assets/icon_l2.png"
+import L3 from "~/public/assets/icon_l3.png"
+import Rookie from "~/public/assets/icon_rookie.png"
+import Beginner from "~/public/assets/icon_beginner.png"
+
 import type { Player } from "~/types/getUserProfile"
 
 interface IProfile {
@@ -18,11 +25,11 @@ const CHAR_BASE =
   "https://s3-ap-northeast-1.amazonaws.com/solution-userstats/metadata/character"
 
 const LICENSE_IMG = {
-  "5": "/assets/icon_l1.png",
-  "4": "/assets/icon_l2.png",
-  "3": "/assets/icon_l3.png",
-  "2": "/assets/icon_rookie.png",
-  "1": "/assets/icon_beginner.png",
+  "5": L1,
+  "4": L2,
+  "3": L3,
+  "2": Rookie,
+  "1": Beginner,
   "0": "",
 }
 

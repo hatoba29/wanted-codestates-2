@@ -3,6 +3,8 @@ import styled from "@emotion/styled"
 import { FaSearch } from "react-icons/fa"
 import { NavLink, useNavigate } from "react-router-dom"
 
+import BG from "~/public/assets/main_bg1.png"
+
 type TCategory = "user" | "track"
 
 const Home = () => {
@@ -56,7 +58,7 @@ const Home = () => {
 const Wrapper = styled.section`
   height: 100vh;
   margin-top: -56px;
-  background-image: url("assets/main_bg1.png");
+  background-image: url(${BG});
   background-size: cover;
 
   display: flex;
