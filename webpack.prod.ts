@@ -1,7 +1,6 @@
 import { resolve } from "path"
 import { Configuration } from "webpack"
 import HtmlWebPackPlugin from "html-webpack-plugin"
-import Dotenv from "dotenv-webpack"
 import "webpack-dev-server"
 
 const config: Configuration = {
@@ -39,9 +38,6 @@ const config: Configuration = {
     new HtmlWebPackPlugin({
       template: "public/index.html",
       favicon: "public/favicon.png",
-    }),
-    new Dotenv({
-      path: "./.env.local",
     }),
   ],
 }
