@@ -16,7 +16,8 @@ const matchTypeHash = {
 const nexonAxios = axios.create({
   baseURL: "/api",
   headers: {
-    Authorization: process.env.API_KEY as string,
+    Authorization:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiMjUxOTM1OTM2IiwiYXV0aF9pZCI6IjIiLCJ0b2tlbl90eXBlIjoiQWNjZXNzVG9rZW4iLCJzZXJ2aWNlX2lkIjoiNDMwMDExMzkzIiwiWC1BcHAtUmF0ZS1MaW1pdCI6IjUwMDoxMCIsIm5iZiI6MTY0NzgzNTY5OSwiZXhwIjoxNjYzMzg3Njk5LCJpYXQiOjE2NDc4MzU2OTl9.F3P9zhvAjp4_J12_kuJ3y2GCo4-VWpWn-05wH5unc2I" as string,
   },
 })
 
