@@ -12,11 +12,6 @@ const config: Configuration = {
   output: {
     clean: true,
   },
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-    hot: true,
-  },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     alias: {
@@ -29,6 +24,10 @@ const config: Configuration = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
+      },
+      {
+        test: /\.(svg|png)$/,
+        type: "asset/resource",
       },
       {
         test: /\.html$/,
