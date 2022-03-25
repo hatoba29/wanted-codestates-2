@@ -10,7 +10,7 @@ const Spinner = ({ show }: { show: boolean }) => {
     if (!show) {
       setTimeout(() => {
         setClose("close")
-      }, 300)
+      }, 800)
     } else {
       setClose("")
     }
@@ -30,6 +30,7 @@ const BackDrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
+  z-index: 1;
 
   /* animation: fade-in 0.3s ease-out; */
   transition: opacity 0.3s ease-out;
@@ -44,6 +45,7 @@ const BackDrop = styled.div`
   }
   &.off {
     opacity: 0;
+    transition: opacity 0.3s 0.3s ease-out;
   }
   &.close {
     display: none;

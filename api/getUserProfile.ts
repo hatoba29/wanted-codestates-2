@@ -1,5 +1,10 @@
 import axios from "axios"
-import { QueryFunction, QueryFunctionContext, useQuery } from "react-query"
+import {
+  QueryFunction,
+  QueryFunctionContext,
+  useQuery,
+  UseQueryOptions,
+} from "react-query"
 import dayjs from "dayjs"
 import type { UserProfile, IQueryKey, Result } from "~/types/getUserProfile"
 
@@ -52,7 +57,11 @@ export const getUserProfile = async (
   }
 }
 
-export const useNexonQuery = (
+export const useUPQuery = (
   key: IQueryKey[],
-  fetcher: QueryFunction<Result, IQueryKey[]>
-) => useQuery<Result, unknown, Result, IQueryKey[]>(key, fetcher)
+  fetcher: QueryFunction<Result, IQueryKey[]>,
+  opt: Omit<
+    UseQueryOptions<Result, unknown, Result, IQueryKey[]>,
+    "queryKey" | "queryFn"
+  >
+) => useQuery<Result, unknown, Result, IQueryKey[]>(key, fetcher, opt)

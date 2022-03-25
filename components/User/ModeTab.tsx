@@ -1,9 +1,27 @@
-import React, { MouseEvent } from "react"
+import React, { Dispatch, MouseEvent, SetStateAction, useEffect } from "react"
 import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
 
-const ModeTab = () => {
+interface IModeTab {
+  setShowRetire: Dispatch<SetStateAction<boolean>>
+  mostMode: string | undefined
+}
+
+const ModeTab = ({ setShowRetire, mostMode }: IModeTab) => {
   const [params, setParams] = useSearchParams()
+
+  useEffect(() => {
+    const mode = params.get("mode") || mostMode || ""
+    const target = document.getElementById("tabs") as HTMLUListElement
+    const children = [...target.children]
+    children.forEach((c) => {
+      if (c.id !== mode) {
+        c.classList.remove("active")
+      } else {
+        c.classList.add("active")
+      }
+    })
+  }, [params, mostMode])
 
   const handleTab = (e: MouseEvent<HTMLUListElement>) => {
     const curTarget = e.currentTarget
@@ -26,16 +44,15 @@ const ModeTab = () => {
 
   const handleToggle = (e: MouseEvent<HTMLDivElement>) => {
     e.currentTarget.classList.toggle("active")
+    setShowRetire((prev) => !prev)
   }
 
   return (
     <Wrapper>
-      <Tabs onClick={handleTab}>
-        <Tab id="combine" className="active">
-          통합
-        </Tab>
-        <Tab id="infinit">매우빠름</Tab>
-        <Tab id="fastest">무한부스터</Tab>
+      <Tabs id="tabs" onClick={handleTab}>
+        <Tab id="combine">통합</Tab>
+        <Tab id="fastest">매우빠름</Tab>
+        <Tab id="infinit">무한부스터</Tab>
       </Tabs>
       <Retire>
         리타이어 노출

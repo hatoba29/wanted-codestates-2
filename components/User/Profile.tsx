@@ -35,6 +35,7 @@ const Profile = ({ character, license, matchType }: IProfile) => {
     } else {
       params.set("matchType", "team")
     }
+    params.delete("mode")
     setParams(params)
   }
 

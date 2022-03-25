@@ -3,30 +3,38 @@ import styled from "@emotion/styled"
 import { useSearchParams } from "react-router-dom"
 import { FaInfoCircle } from "react-icons/fa"
 
-import { getUserProfile, useNexonQuery } from "~/api/fetcher"
+import { getUserProfile, useUPQuery } from "~/api/getUserProfile"
 import UserComp from "~/components/User"
 import calcRecords from "~/utils/calcRecords"
 import calcRank from "~/utils/calcRank"
+import calcMatch from "~/utils/calcMatch"
 
 import type { IRecords } from "~/components/User/Records"
 import type { IRank } from "~/components/User/Rank"
+import type { IMatchList } from "~/components/User/MatchList"
 import type { Player } from "~/types/getUserProfile"
 
 type TMatchType = "indi" | "team"
 
 const User = () => {
-  const params = useSearchParams()[0]
+  const [params, setParams] = useSearchParams()
   const nick = params.get("nick") || ""
   const matchType = (params.get("matchType") as TMatchType) || "indi"
-  const { data, isLoading } = useNexonQuery(
+  const mode = params.get("mode") || ""
+  const { data, isLoading } = useUPQuery(
     [{ nick, matchType }],
-    getUserProfile
+    getUserProfile,
+    {
+      cacheTime: 0,
+    }
   )
 
   const [character, setCharacter] = useState("")
   const [license, setLicense] = useState<Player["rankinggrade2"]>("0")
+  const [showRetire, setShowRetire] = useState(true)
   const [recordsData, setRecordsData] = useState<IRecords["data"] | null>(null)
   const [rankData, setRankData] = useState<IRank["data"] | null>(null)
+  const [matchData, setMatchData] = useState<IMatchList["data"] | null>(null)
 
   // initialize data after fetching
   useEffect(() => {
@@ -36,8 +44,10 @@ const User = () => {
     setLicense(info.player.rankinggrade2)
     setRecordsData(calcRecords(data.matchInfo))
     setRankData(calcRank(data.matchInfo))
-  }, [data])
+    setMatchData(calcMatch(data.matchInfo, mode))
+  }, [data, mode])
 
+  if (isLoading) window.scrollTo({ top: 0 })
   if (data?.notFound) return <UserComp.NotFound />
   return (
     <Wrapper>
@@ -55,7 +65,11 @@ const User = () => {
         <UserComp.Rank data={rankData} />
         <UserComp.Comment />
       </Stat>
-      <UserComp.ModeTab />
+      <UserComp.ModeTab
+        setShowRetire={setShowRetire}
+        mostMode={recordsData?.mostMode}
+      />
+      <UserComp.MatchList data={matchData} showRetire={showRetire} />
       <UserComp.Spinner show={isLoading} />
     </Wrapper>
   )

@@ -1,3 +1,6 @@
+import kart from "~/data/kart.json"
+import track from "~/data/track.json"
+
 export interface UserProfile {
   nickName: string
   matches: Match[]
@@ -17,7 +20,7 @@ interface MatchInfo {
   startTime: string
   endTime: string
   channelName: string
-  trackId: string
+  trackId: keyof typeof track
   playerCount: number
   matchResult: string
   player: Player
@@ -25,7 +28,7 @@ interface MatchInfo {
 
 interface Player {
   character: string
-  kart: string
+  kart: keyof typeof kart
   pet: string
   flyingPet: string
   rankinggrade2: "5" | "4" | "3" | "1" | "0"
