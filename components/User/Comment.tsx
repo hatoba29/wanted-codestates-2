@@ -2,11 +2,14 @@ import React, { MouseEvent, useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import useAreValid from "~/hooks/useAreValid"
 
-const Comment = () => {
+const Comment = ({ data }: { data: string }) => {
   const [nick, setNick] = useState("")
   const [comment, setComment] = useState("")
   const [commentList, setCommentList] = useState<[string, string][]>([])
   const areValid = useAreValid(nick, comment)
+
+  // reset comment list when user changed
+  useEffect(() => setCommentList([]), [data])
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
