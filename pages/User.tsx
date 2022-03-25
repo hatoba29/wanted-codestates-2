@@ -17,7 +17,7 @@ import type { Player } from "~/types/getUserProfile"
 type TMatchType = "indi" | "team"
 
 const User = () => {
-  const [params, setParams] = useSearchParams()
+  const params = useSearchParams()[0]
   const nick = params.get("nick") || ""
   const matchType = (params.get("matchType") as TMatchType) || "indi"
   const mode = params.get("mode") || ""
@@ -63,7 +63,7 @@ const User = () => {
       <Stat>
         <UserComp.Records data={recordsData} />
         <UserComp.Rank data={rankData} />
-        <UserComp.Comment />
+        <UserComp.Comment data={character} />
       </Stat>
       <UserComp.ModeTab
         setShowRetire={setShowRetire}
