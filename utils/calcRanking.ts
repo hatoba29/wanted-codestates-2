@@ -76,7 +76,11 @@ const calcRanking = (data: Result, matchType: "indi" | "team") => {
     })
   })
 
-  return result
+  return {
+    combine: result.combine.slice(0, 100),
+    fastest: result.fastest.slice(0, 100),
+    infinit: result.infinit.slice(0, 100),
+  }
 }
 
 export default calcRanking
