@@ -48,6 +48,8 @@ const Rank = ({ data }: IRank) => {
       },
       y: {
         reverse: true,
+        min: 1,
+        max: 8,
       },
     },
   }
