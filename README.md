@@ -85,3 +85,15 @@ TypeScript만을 이용하여 만들었으며 타입정의와 json 데이터만�
 4. calcRecords.ts
   - 개인 전적 조회 페이지의 종합 전적에 필요한 승률, 완주율, 리타이어율을 계산하여 돌려줍니다.
   - 리타이어율은 100%에서 완주율을 빼서 계산하였습니다.
+
+# 🛠 사용 기술
+
+## 📐 Front-End
+
+![TypeScript](https://img.shields.io/badge/typescript-%23377ac4.svg?style=for-the-badge&logo=typescript&logoColor=%23ffffff)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+## ✈️ Deploy
+
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
