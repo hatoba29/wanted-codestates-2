@@ -92,6 +92,7 @@ TypeScript만을 이용하여 만들었으며 타입정의와 json 데이터만�
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23377ac4.svg?style=for-the-badge&logo=typescript&logoColor=%23ffffff)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
 ## ✈️ Deploy
