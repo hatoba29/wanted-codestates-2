@@ -2,12 +2,14 @@ import React, {
   Fragment,
   MouseEvent,
   ReactPortal,
+  useEffect,
   useMemo,
   useState,
 } from "react"
 import { createPortal } from "react-dom"
 import styled from "@emotion/styled"
 import { FaCaretDown, FaExclamationTriangle } from "react-icons/fa"
+import { useSearchParams } from "react-router-dom"
 import dayjs from "dayjs"
 import Duration from "dayjs/plugin/duration"
 import RelativeTime from "dayjs/plugin/relativeTime"
@@ -42,7 +44,13 @@ interface IToOpen {
 }
 
 const MatchList = ({ data, showRetire }: IMatchList) => {
+  const params = useSearchParams()[0]
   const [toOpen, setToOpen] = useState<IToOpen[]>([])
+
+  // reset to open list when user changed
+  useEffect(() => {
+    setToOpen([])
+  }, [params])
 
   const handleDetail = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget
