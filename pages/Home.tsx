@@ -40,7 +40,6 @@ const Home = () => {
       <Search>
         <Category onChange={handleCategory}>
           <option value="user">유저</option>
-          <option value="track">트랙</option>
         </Category>
         <SearchInput
           placeholder={placeholder[category]}
