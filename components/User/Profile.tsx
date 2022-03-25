@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react"
+import React, { MouseEvent, SyntheticEvent } from "react"
 import styled from "@emotion/styled"
 import { FaUser, FaUsers } from "react-icons/fa"
 import { useSearchParams } from "react-router-dom"
@@ -21,6 +21,7 @@ const LICENSE_IMG = {
   "5": "/assets/icon_l1.png",
   "4": "/assets/icon_l2.png",
   "3": "/assets/icon_l3.png",
+  "2": "/assets/icon_rookie.png",
   "1": "/assets/icon_beginner.png",
   "0": "",
 }
@@ -28,6 +29,10 @@ const LICENSE_IMG = {
 const Profile = ({ character, license, matchType }: IProfile) => {
   const [params, setParams] = useSearchParams()
   const nick = params.get("nick")
+
+  const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.hidden = true
+  }
 
   const handleTab = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.classList.contains("indi")) {
@@ -42,7 +47,11 @@ const Profile = ({ character, license, matchType }: IProfile) => {
   if (character === "") return <></>
   return (
     <Wrapper>
-      <Pic src={`${CHAR_BASE}/${character}.png`} alt="profile pic" />
+      <Pic
+        src={`${CHAR_BASE}/${character}.png`}
+        alt="profile pic"
+        onError={handleError}
+      />
       <Nick>
         {nick}
         <License url={LICENSE_IMG[license]} />
@@ -72,6 +81,7 @@ const Wrapper = styled.section`
   height: 178px;
   border: 1px solid #f2f2f2;
   border-left: 4px solid #0077ff;
+  padding-left: 20px;
   background-color: white;
 
   display: grid;
