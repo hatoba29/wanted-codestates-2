@@ -1,4 +1,5 @@
 export interface MatchDetail {
+  channelName: string
   players: Player[]
   teams: [Team, Team]
 }
